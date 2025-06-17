@@ -1,0 +1,1 @@
+export const BACKEND_API = "https://review-api-8kw6.onrender.com/api";
