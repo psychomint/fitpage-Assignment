@@ -4,7 +4,7 @@
   "description": "Assignment for fitpage",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html && cp public/_redirects dist/",
     "test": "jest"
   },
   "repository": {
