@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -6,6 +7,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("userId");
     navigate("/login");
+    toast.success("Logged out successfully");
   };
 
   const isLoggedIn = !!localStorage.getItem("userId");

@@ -6,6 +6,7 @@ export default function LoginForm() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(null);
+    setLoading(true);
 
     const url = showRegister ? "register" : "login";
     const bodyData = showRegister
@@ -50,6 +52,9 @@ export default function LoginForm() {
       console.error("Error during fetch:", err);
       setMessage({ type: "error", text: "Server error" });
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   return (
@@ -59,7 +64,7 @@ export default function LoginForm() {
         className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6 text-center">
-          {showRegister ? "Register" : "Login"}
+          {loading ? (showRegister ? "Registering..." : "Logging in..") : (showRegister ? "Register" : "Login")}
         </h2>
 
         {message && (
@@ -104,7 +109,7 @@ export default function LoginForm() {
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition duration-200 mb-3"
         >
-          {showRegister ? "Register" : "Login"}
+          {loading ? (showRegister ? "Registering..." : "Logging in..") : (showRegister ? "Register" : "Login")}
         </button>
 
         <button
